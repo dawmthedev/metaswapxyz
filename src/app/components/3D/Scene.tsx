@@ -2,74 +2,68 @@
 
 import React, { useRef, useState, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import {
-  Points,
-  Mesh,
-  BufferGeometry,
-  Float32BufferAttribute,
-  AdditiveBlending,
-} from "three";
+import { Points, Mesh, AdditiveBlending } from "three";
 import { OrbitControls } from "@react-three/drei";
 
 export default function Scene() {
-  const meshRef = useRef<Mesh>(null); // Explicitly typing as Mesh
-  const particlesRef = useRef<Points>(null); // Explicitly typing as Points
-  const [particlesVisible, setParticlesVisible] = useState(false);
+  const meshRef = useRef<Mesh>(null);
+  const particlesRef = useRef<Points>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  // Create random particle positions and speeds
   const particleData = useMemo(() => {
-    const count = 100; // Number of particles
-    const positions = [];
-    const speeds = [];
-    const origins = [];
-    for (let i = 0; i < count; i++) {
-      const x = (Math.random() - 0.5) * 0.5; // X origin
-      const y = (Math.random() - 0.5) * 0.5; // Y origin
-      const z = (Math.random() - 0.5) * 0.5; // Z origin
+    const count = 500;
+    const radius = 0.5;
+    const positions = new Float32Array(count * 3);
+    const origins = new Float32Array(count * 3);
+    const speeds = new Float32Array(count);
 
-      positions.push(x, y, z); // Initial positions
-      speeds.push(Math.random() * 0.02 + 0.01); // Speed for each particle
-      origins.push(x, y, z); // Save origin positions
+    for (let i = 0; i < count; i++) {
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const x = radius * Math.sin(phi) * Math.cos(theta);
+      const y = radius * Math.sin(phi) * Math.sin(theta);
+      const z = radius * Math.cos(phi);
+
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
+      positions[i * 3 + 2] = z;
+
+      origins[i * 3] = x;
+      origins[i * 3 + 1] = y;
+      origins[i * 3 + 2] = z;
+
+      speeds[i] = 0.5 + Math.random() * 2;
     }
-    return {
-      positions: new Float32Array(positions),
-      speeds,
-      origins: new Float32Array(origins),
-    };
+
+    return { positions, origins, speeds };
   }, []);
 
-  // Animate particles
   useFrame(({ clock }) => {
     if (meshRef.current) {
       const elapsedTime = clock.getElapsedTime();
-
-      // Rotate the Icosahedron
       meshRef.current.rotation.x = elapsedTime * 0.3;
       meshRef.current.rotation.y = elapsedTime * 0.5;
     }
 
-    if (particlesRef.current && particlesVisible) {
+    if (particlesRef.current && isDragging) {
       const positions = particlesRef.current.geometry.attributes.position
         .array as Float32Array;
       const origins = particleData.origins;
       const { speeds } = particleData;
 
       for (let i = 0; i < positions.length; i += 3) {
-        // Expand particles dynamically
-        positions[i] += Math.sin(clock.getElapsedTime() * speeds[i / 3]) * 0.02; // X
+        positions[i] += Math.sin(clock.getElapsedTime() * speeds[i / 5]) * 0.01;
         positions[i + 1] +=
-          Math.cos(clock.getElapsedTime() * speeds[i / 3]) * 0.02; // Y
+          Math.cos(clock.getElapsedTime() * speeds[i / 3]) * 0.02;
         positions[i + 2] +=
-          Math.sin(clock.getElapsedTime() * speeds[i / 3]) * 0.02; // Z
+          Math.sin(clock.getElapsedTime() * speeds[i / 3]) * 0.02;
 
-        // Check if particle has expanded too far
         const distanceSquared =
           Math.pow(positions[i] - origins[i], 2) +
           Math.pow(positions[i + 1] - origins[i + 1], 2) +
           Math.pow(positions[i + 2] - origins[i + 2], 2);
 
         if (distanceSquared > 1) {
-          // Reset particle to origin
           positions[i] = origins[i];
           positions[i + 1] = origins[i + 1];
           positions[i + 2] = origins[i + 2];
@@ -81,30 +75,23 @@ export default function Scene() {
 
   return (
     <>
-      {/* Lights */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 10]} intensity={1} />
       <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
-      {/* Icosahedron Geometry */}
-      <mesh
-        ref={meshRef}
-        onPointerOver={() => setParticlesVisible(true)} // Show particles on hover
-        onPointerOut={() => setParticlesVisible(false)} // Hide particles when not hovering
-      >
+      <mesh ref={meshRef}>
         <icosahedronGeometry args={[0.5, 0]} />
         <meshPhysicalMaterial
-          metalness={1} // Chrome effect
-          roughness={0.05} // Smooth for high reflectivity
-          transmission={0.3} // Glassy effect
-          thickness={0.5} // Polished look
-          envMapIntensity={1.5} // Reflectivity
-          color="white" // Base color
+          metalness={1}
+          roughness={0.05}
+          transmission={0.3}
+          thickness={0.5}
+          envMapIntensity={1.5}
+          color="white"
         />
       </mesh>
 
-      {/* Dynamic Particle Effect */}
-      {particlesVisible && (
+      {isDragging && (
         <points ref={particlesRef}>
           <bufferGeometry>
             <bufferAttribute
@@ -115,19 +102,22 @@ export default function Scene() {
             />
           </bufferGeometry>
           <pointsMaterial
-            size={0.1} // Size of each particle
+            size={0.1}
             sizeAttenuation
             transparent
             opacity={0.8}
-            vertexColors={false} // Option for colorful particles
-            color="#ff69b4" // Magical pink color
-            blending={AdditiveBlending} // Glow effect
+            vertexColors={false}
+            color="#ff69b4"
+            blending={AdditiveBlending}
           />
         </points>
       )}
 
-      {/* Camera Controls */}
-      <OrbitControls enableZoom={false} />
+      <OrbitControls
+        enableZoom={false}
+        onStart={() => setIsDragging(true)}
+        onEnd={() => setIsDragging(false)}
+      />
     </>
   );
 }
