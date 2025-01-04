@@ -12,9 +12,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(120deg, #ff69b4, #00bfff, #ff69b4);
-  animation: lava-lamp 8s infinite alternate ease-in-out;
-  background-size: 200% 200%;
+  background: radial-gradient(
+    circle,
+    #21d4fd,
+    #008cff,
+    #f50ad6,
+    #f7f7f7,
+    #e6e758
+  );
+  animation: lava-lamp 6s infinite alternate ease-in-out;
+  background-size: 400% 400%;
 }
 
 @keyframes lava-lamp {
@@ -22,7 +29,7 @@ body {
     background-position: 0% 50%;
   }
   50% {
-    background-position: 50% 50%;
+    background-position: 50% 100%;
   }
   100% {
     background-position: 100% 50%;
