@@ -80,7 +80,7 @@ export default function Scene() {
       <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
       <mesh ref={meshRef}>
-        <icosahedronGeometry args={[0.5, 0]} />
+        <icosahedronGeometry args={[1, 0]} />
         <meshPhysicalMaterial
           metalness={1}
           roughness={0.05}
@@ -115,6 +115,12 @@ export default function Scene() {
 
       <OrbitControls
         enableZoom={false}
+        enablePan={false}
+        enableDamping={true}
+        dampingFactor={0.05}
+        rotateSpeed={0.5}
+        minPolarAngle={Math.PI / 3} // Changed from Math.PI / 2
+        maxPolarAngle={Math.PI / 1.5} // Changed from Math.PI / 2
         onStart={() => setIsDragging(true)}
         onEnd={() => setIsDragging(false)}
       />
