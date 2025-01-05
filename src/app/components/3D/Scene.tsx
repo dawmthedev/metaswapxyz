@@ -1,9 +1,24 @@
 "use client";
 
-import React, { useRef, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Points, Mesh, AdditiveBlending } from "three";
 import { OrbitControls } from "@react-three/drei";
+
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkSize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, [breakpoint]);
+
+  return isMobile;
+}
 
 export default function Scene() {
   const meshRef = useRef<Mesh>(null);
@@ -37,6 +52,14 @@ export default function Scene() {
 
     return { positions, origins, speeds };
   }, []);
+
+  // Scale .6 on mobile, 1 on desktop
+  const isMobile = useIsMobile();
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    setScale(isMobile ? 0.6 : 1);
+  }, [isMobile]);
 
   useFrame(({ clock }) => {
     if (meshRef.current) {
@@ -79,7 +102,7 @@ export default function Scene() {
       <directionalLight position={[10, 10, 10]} intensity={1} />
       <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
-      <mesh ref={meshRef} scale={0.6}>
+      <mesh ref={meshRef} scale={scale}>
         <icosahedronGeometry args={[1, 0]} />
         <meshPhysicalMaterial
           metalness={1}
