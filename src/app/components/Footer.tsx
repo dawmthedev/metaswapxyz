@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="absolute bottom-0 left-0 w-full px-4 md:px-12 py-4 md:py-8 z-10 flex justify-center mb-2">
+    <footer className="absolute bottom-0 left-0 w-full px-4 md:px-12 py-4 md:py-8 z-10 flex justify-center mb-10">
       <div className="flex flex-col items-start w-full md:max-w-[70%]">
         <h3 className="text-3xl md:text-5xl font-extrabold leading-none">
           Metaswap
