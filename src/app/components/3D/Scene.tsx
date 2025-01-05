@@ -79,7 +79,7 @@ export default function Scene() {
       <directionalLight position={[10, 10, 10]} intensity={1} />
       <directionalLight position={[-10, -10, -10]} intensity={0.5} />
 
-      <mesh ref={meshRef}>
+      <mesh ref={meshRef} scale={0.6}>
         <icosahedronGeometry args={[1, 0]} />
         <meshPhysicalMaterial
           metalness={1}

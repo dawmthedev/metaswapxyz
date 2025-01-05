@@ -25,7 +25,7 @@ export default function Header() {
           >
             Investors
           </a>
-          <UserIcon className="h-6 w-6 text-white ml-2" />
+          <UserIcon className="h-6 w-6 text-black ml-2" />
         </nav>
       </div>
     </header>
