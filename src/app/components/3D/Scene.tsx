@@ -26,11 +26,12 @@ export default function Scene() {
   const [isDragging, setIsDragging] = useState(false);
 
   const particleData = useMemo(() => {
-    const count = 500;
+    const count = 2000;
     const radius = 0.5;
     const positions = new Float32Array(count * 3);
     const origins = new Float32Array(count * 3);
     const speeds = new Float32Array(count);
+    const colors = new Float32Array(count * 3);
 
     for (let i = 0; i < count; i++) {
       const theta = Math.random() * 2 * Math.PI;
@@ -48,9 +49,13 @@ export default function Scene() {
       origins[i * 3 + 2] = z;
 
       speeds[i] = 0.5 + Math.random() * 2;
+
+      colors[i * 3] = Math.random(); // R
+      colors[i * 3 + 1] = Math.random(); // G
+      colors[i * 3 + 2] = Math.random(); // B
     }
 
-    return { positions, origins, speeds };
+    return { positions, origins, speeds, colors };
   }, []);
 
   // Scale .6 on mobile, 1 on desktop
@@ -123,14 +128,19 @@ export default function Scene() {
               count={particleData.positions.length / 3}
               itemSize={3}
             />
+            <bufferAttribute
+              attach="attributes-color"
+              array={particleData.colors}
+              count={particleData.colors.length / 3}
+              itemSize={3}
+            />
           </bufferGeometry>
           <pointsMaterial
             size={0.1}
             sizeAttenuation
             transparent
             opacity={0.8}
-            vertexColors={false}
-            color="#ff69b4"
+            vertexColors={true}
             blending={AdditiveBlending}
           />
         </points>
@@ -141,7 +151,7 @@ export default function Scene() {
         enablePan={false}
         enableDamping={true}
         dampingFactor={0.05}
-        rotateSpeed={0.5}
+        rotateSpeed={0.7}
         minPolarAngle={Math.PI / 3} // Changed from Math.PI / 2
         maxPolarAngle={Math.PI / 1.5} // Changed from Math.PI / 2
         onStart={() => setIsDragging(true)}
