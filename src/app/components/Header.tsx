@@ -18,19 +18,19 @@ export default function Header() {
       <nav className="flex items-center gap-5 md:gap-8">
         <a
           href="#"
-          className="underline underline-offset-4 decoration-2 text-2xl md:text-3xl font-bold"
+          className="underline underline-offset-4 decoration-2 text-sm md:text-3xl font-bold"
         >
           News
         </a>
         <a
           href="#"
-          className="underline underline-offset-4 decoration-2 text-2xl md:text-3xl font-bold"
+          className="underline underline-offset-4 decoration-2 text-sm md:text-3xl font-bold"
         >
           Careers
         </a>
         <a
           href="#"
-          className="underline underline-offset-4 decoration-2 text-2xl md:text-3xl font-bold"
+          className="underline underline-offset-4 decoration-2 text-sm md:text-3xl font-bold"
         >
           Investors
         </a>
