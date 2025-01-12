@@ -13,6 +13,7 @@ export default function Footer() {
     justify-center
     mb-3
     md:mb-6
+    pb-10
   "
 >
   <div
@@ -65,16 +66,31 @@ export default function Footer() {
           lg:items-center
         "
       >
-        <a href="#" className="underline font-medium hover:text-white">
-          MSC
-        </a>
-        <a href="#" className="underline font-medium hover:text-white">
-          Unhashlabs
-        </a>
-        <a href="#" className="underline font-medium hover:text-white">
-          Connect
-        </a>
-       
+  <a
+  href="https://www.metaswapcapital.com"
+  className="underline font-medium hover:text-white"
+  target="_blank" // Opens the link in a new tab
+  rel="noopener noreferrer" // Adds security best practices
+>
+  MSC
+</a>
+<a
+  href="https://www.unhashlabs.xyz"
+  className="underline font-medium hover:text-white"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Unhashlabs
+</a>
+<a
+  href="https://instagram.com/metaswap"
+  className="underline font-medium hover:text-white"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Connect
+</a>
+
       </nav>
     </div>
 
