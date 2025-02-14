@@ -82,7 +82,7 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://unhashlabs.xyz.labs"
+            href="https://unhashlabs.xyz"
             className="underline text-sm md:text-xl font-medium hover:text-white"
             target="_blank"
             rel="noopener noreferrer"
