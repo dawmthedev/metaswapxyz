@@ -25,11 +25,11 @@ export default function Header() {
           News
         </a>
         <a
-          href="https://instagram.com/metaswap"
+          href="https://metaswap.xyz.com/about"
           target="_blank"
           className="underline underline-offset-4 decoration-2 text-2xl md:text-3xl font-bold"
         >
-          Careers
+          About
         </a>
         <a
           href="mailto:info@metaswapllc.com"
