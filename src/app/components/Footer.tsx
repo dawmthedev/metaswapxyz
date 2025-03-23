@@ -87,7 +87,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Unhash Labs
+            Metaswap Labs
           </a>
 
           <a
