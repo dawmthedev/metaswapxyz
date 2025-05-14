@@ -72,14 +72,14 @@ export default function Footer() {
             gap-4 md:gap-6
           "
         >
-          <a
+          {/* <a
             href="https://metaswapcapital.com"
             className="underline text-sm md:text-xl font-medium hover:text-white"
             target="_blank"
             rel="noopener noreferrer"
           >
             MSC
-          </a>
+          </a> */}
 
           <a
             href="https://unhashlabs.xyz"
