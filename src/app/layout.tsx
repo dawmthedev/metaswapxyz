@@ -17,12 +17,19 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head />
-      <body className={`min-h-screen flex flex-col ${orbitron.variable} font-orbitron`}>
-        <Header />
+      <body
+        className={`min-h-screen flex flex-col ${orbitron.variable} font-orbitron`}
+        // TODO: ADD HEADER BACK
+      >
+        {/* <Header /> */}
         <main className="flex-1">{children}</main>
         <Footer />
       </body>
