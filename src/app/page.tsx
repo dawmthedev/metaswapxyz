@@ -7,7 +7,7 @@ const ThreeCanvas = dynamic(() => import("./three-canvas"), { ssr: false });
 
 export default function HomePage() {
   return (
-    <main className="relative w-full h-screen overflow-hidden">
+    <main className="fixed inset-0 overflow-hidden">
       {/* Splash screen fades out after load */}
       <SplashScreen />
 
