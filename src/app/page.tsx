@@ -7,7 +7,7 @@ const ThreeCanvas = dynamic(() => import("./three-canvas"), { ssr: false });
 
 export default function HomePage() {
   return (
-    <main className="relative w-full h-screen overflow-hidden">
+    <main className="fixed inset-0 overflow-hidden">
       {/* Splash screen fades out after load */}
       <SplashScreen />
 
@@ -15,7 +15,7 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-blue-500" />
 
       {/* 3D canvas center */}
-      <section className="relative w-full h-full flex items-center justify-center">
+      <section className="absolute inset-0 flex items-center justify-center w-screen h-screen">
         <ThreeCanvas />
       </section>
     </main>
