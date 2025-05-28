@@ -1,5 +1,3 @@
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -21,16 +19,12 @@ export default function RolePage({ params }: { params: { slug: string } }) {
   const role = roles.find((r) => r.slug === params.slug);
   if (!role) return notFound();
   return (
-    <main className="relative min-h-screen w-full bg-white text-black flex flex-col">
-      <Header />
-      <section className="flex-1 px-6 py-24 max-w-4xl mx-auto space-y-6">
-        <h1 className="text-4xl font-extrabold">{role.title}</h1>
-        <p>{role.description}</p>
-        <a href="mailto:hr@metaswap.xyz" className="underline text-blue-600 font-bold">
-          Apply Now
-        </a>
-      </section>
-      <Footer />
-    </main>
+    <div className="py-16 px-4 md:px-8 max-w-4xl mx-auto space-y-6">
+      <h1 className="text-4xl font-extrabold">{role.title}</h1>
+      <p>{role.description}</p>
+      <a href="mailto:hr@metaswap.xyz" className="underline text-blue-600 font-bold">
+        Apply Now
+      </a>
+    </div>
   );
 }

@@ -20,7 +20,7 @@ export default async function BlogPostPage({ params }: { params: { slug_title: s
   if (!post) return notFound();
 
   return (
-    <main className="min-h-screen w-full px-6 py-20 bg-white text-black">
+    <div className="py-16 px-4 md:px-8 max-w-3xl mx-auto">
       <Link href="/blog" className="underline mb-8 block">Back to Blog</Link>
       <h1 className="text-6xl font-extrabold mb-4">{post.title}</h1>
       <p className="text-sm mb-8">{post.date}</p>
@@ -29,6 +29,6 @@ export default async function BlogPostPage({ params }: { params: { slug_title: s
           <p key={idx}>{paragraph}</p>
         ))}
       </article>
-    </main>
+    </div>
   );
 }

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const posts = await getAllPosts();
   return (
-    <main className="min-h-screen w-full px-6 py-20 bg-white text-black">
+    <div className="py-16 px-4 md:px-8 max-w-6xl mx-auto">
       <h1 className="text-6xl font-extrabold mb-12">Blog</h1>
       <div className="grid gap-8 md:grid-cols-2">
         {posts.map((post) => (
@@ -24,6 +24,6 @@ export default async function BlogPage() {
           </Link>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

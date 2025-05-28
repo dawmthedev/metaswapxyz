@@ -1,5 +1,3 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { getAllPosts } from '@/lib/blog';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,12 +12,10 @@ export default async function NewsPage() {
   const posts = await getAllPosts();
 
   return (
-    <main className="relative min-h-screen w-full bg-white text-black flex flex-col">
-      <Header />
-      <section className="flex-1 px-6 py-24 max-w-6xl mx-auto">
-        <h1 className="text-5xl font-extrabold mb-12">News</h1>
-        <div className="grid gap-8 md:grid-cols-2">
-          {posts.map((post) => (
+    <div className="py-16 px-4 md:px-8 max-w-6xl mx-auto">
+      <h1 className="text-5xl font-extrabold mb-12">News</h1>
+      <div className="grid gap-8 md:grid-cols-2">
+        {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -41,21 +37,19 @@ export default async function NewsPage() {
             </Link>
           ))}
         </div>
-        <div className="mt-16 text-center">
-          <p className="text-xl font-semibold mb-4">Stay up to date with our latest news.</p>
-          <form className="flex justify-center gap-2">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="border border-gray-300 px-4 py-2 w-64"
-            />
-            <button type="submit" className="bg-blue-600 text-white px-4 py-2 font-bold">
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </section>
-      <Footer />
-    </main>
+      <div className="mt-16 text-center">
+        <p className="text-xl font-semibold mb-4">Stay up to date with our latest news.</p>
+        <form className="flex justify-center gap-2">
+          <input
+            type="email"
+            placeholder="Your email"
+            className="border border-gray-300 px-4 py-2 w-64"
+          />
+          <button type="submit" className="bg-blue-600 text-white px-4 py-2 font-bold">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
