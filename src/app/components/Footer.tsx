@@ -115,12 +115,13 @@ export default function Footer() {
         >
           <p className="text-xs md:text-sm leading-tight">
             © 2025 Metaswap, LLC. All rights reserved.{" "}
-            <a href="#" className="hover:underline font-bold underline">
+            {/* // TODO: Setup pages for these and uncomment when ready */}
+            {/* <a href="#" className="hover:underline font-bold underline">
               Legal.
             </a>
             <a href="#" className="hover:underline font-bold ml-1 underline">
               Privacy.
-            </a>
+            </a> */}
           </p>
         </div>
       </div>
