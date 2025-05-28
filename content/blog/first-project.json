@@ -1,0 +1,10 @@
+{
+  "slug": "first-project",
+  "title": "My First Project",
+  "date": "2025-05-30",
+  "excerpt": "A quick intro to my first project...",
+  "body": [
+    "This is the first paragraph of the project post.",
+    "Here we talk more about the details of the project."
+  ]
+}
