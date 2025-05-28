@@ -1,5 +1,3 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,11 +18,9 @@ const faqs = [
 
 export default function InvestorsPage() {
   return (
-    <main className="relative min-h-screen w-full bg-white text-black flex flex-col">
-      <Header />
-      <section className="flex-1 px-6 py-24 max-w-6xl mx-auto space-y-16">
-        <div>
-          <h1 className="text-5xl font-extrabold mb-6">Investor Relations</h1>
+    <div className="py-16 px-4 md:px-8 max-w-6xl mx-auto space-y-16">
+      <div>
+        <h1 className="text-5xl font-extrabold mb-6">Investor Relations</h1>
           <p className="text-lg">Metaswap has grown steadily since its inception and continues to expand its offerings and customer base.</p>
           <div className="grid grid-cols-2 gap-6 mt-8">
             <div className="p-4 border text-center">
@@ -62,9 +58,7 @@ export default function InvestorsPage() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
-      <Footer />
-    </main>
+      </div>
+    </div>
   );
 }

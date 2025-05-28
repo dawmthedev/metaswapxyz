@@ -1,5 +1,3 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -17,12 +15,10 @@ const perks = ['Remote friendly', 'Flexible schedule', 'Annual company retreat']
 
 export default function CareersPage() {
   return (
-    <main className="relative min-h-screen w-full bg-white text-black flex flex-col">
-      <Header />
-      <section className="flex-1 px-6 py-24 max-w-6xl mx-auto space-y-16">
-        <div>
-          <h1 className="text-5xl font-extrabold mb-6">Careers</h1>
-          <p className="text-lg mb-8">We\'re looking for talented people to join us on our mission.</p>
+    <div className="py-16 px-4 md:px-8 max-w-6xl mx-auto space-y-16">
+      <div>
+        <h1 className="text-5xl font-extrabold mb-6">Careers</h1>
+          <p className="text-lg mb-8">We&apos;re looking for talented people to join us on our mission.</p>
           <div className="space-y-6">
             {roles.map((role) => (
               <Link
@@ -54,8 +50,6 @@ export default function CareersPage() {
             <button type="submit" className="bg-blue-600 text-white px-4 py-2 font-bold">Sign Up</button>
           </form>
         </div>
-      </section>
-      <Footer />
-    </main>
-  );
-}
+      </div>
+    );
+  }

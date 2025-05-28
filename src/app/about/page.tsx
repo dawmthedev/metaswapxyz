@@ -1,5 +1,3 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 
@@ -43,21 +41,19 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen w-full bg-white text-black flex flex-col">
-      <Header />
-      <section className="flex-1 px-6 py-24 max-w-6xl mx-auto space-y-16">
-        <div>
-          <h1 className="text-5xl font-extrabold mb-6">About Metaswap</h1>
-          <p className="text-lg leading-relaxed">
-            Metaswap, LLC was founded to empower businesses with modern software solutions.
-            Our mission is to remove the barriers between ideas and scalable infrastructure.
-            We envision a world where anyone can deploy innovative products in minutes.
-          </p>
-        </div>
+    <div className="py-16 px-4 md:px-8 max-w-6xl mx-auto space-y-16">
+      <div>
+        <h1 className="text-5xl font-extrabold mb-6">About Metaswap</h1>
+        <p className="text-lg leading-relaxed">
+          Metaswap, LLC was founded to empower businesses with modern software solutions.
+          Our mission is to remove the barriers between ideas and scalable infrastructure.
+          We envision a world where anyone can deploy innovative products in minutes.
+        </p>
+      </div>
 
-        <div>
-          <h2 className="text-3xl font-bold mb-4">Our Team</h2>
-          <div className="grid gap-8 md:grid-cols-3">
+      <div>
+        <h2 className="text-3xl font-bold mb-4">Our Team</h2>
+        <div className="grid gap-8 md:grid-cols-3">
             {team.map((member) => (
               <div key={member.name} className="text-center border p-4 shadow-sm">
                 <Image
@@ -83,10 +79,8 @@ export default function AboutPage() {
                 {val}
               </div>
             ))}
-          </div>
         </div>
-      </section>
-      <Footer />
-    </main>
+      </div>
+    </div>
   );
 }
