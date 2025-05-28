@@ -1,7 +1,9 @@
 // src/app/page.tsx
 
 import SplashScreen from "./splash-screen";
-import ThreeCanvas from "./three-canvas";
+import dynamic from "next/dynamic";
+
+const ThreeCanvas = dynamic(() => import("./three-canvas"), { ssr: false });
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 

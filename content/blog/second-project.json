@@ -1,0 +1,10 @@
+{
+  "slug": "second-project",
+  "title": "Another Great Project",
+  "date": "2025-06-15",
+  "excerpt": "An overview of my second big project...",
+  "body": [
+    "Opening paragraph for the second project.",
+    "Additional information about how it was built and lessons learned."
+  ]
+}
